@@ -11,7 +11,7 @@ namespace BlazorPerformance.Client.Features.Contribtuions
 
         private bool _showList = true;
         private int _numResults;
-        GridItemsProvider<Contribution> _itemsProvider;
+        private GridItemsProvider<Contribution>? _itemsProvider;
         private GridSort<Contribution> titleSort = GridSort<Contribution>.ByAscending(x => x.Title);
 
         protected override void OnInitialized()
@@ -34,14 +34,14 @@ namespace BlazorPerformance.Client.Features.Contribtuions
             base.OnInitialized();
         }
 
-        protected override void UpdateCollection(int id, int count)
-        {
-        }
-
         private void ToggleView()
         {
             _showList = !_showList;
             StateHasChanged();
+        }
+
+        protected override void UpdateCollection(int id, int count)
+        {
         }
 
         #region Paging

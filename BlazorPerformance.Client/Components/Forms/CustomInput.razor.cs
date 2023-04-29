@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
 
 namespace BlazorPerformance.Client.Components.Forms
 {
@@ -14,7 +13,6 @@ namespace BlazorPerformance.Client.Components.Forms
         private int _valueHashCode;
         private bool _shouldRender = true;
 
-        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnParametersSet()
         {
@@ -27,6 +25,8 @@ namespace BlazorPerformance.Client.Components.Forms
 
         #endregion
 
+        protected override bool ShouldRender() => true;
+
         protected override void OnAfterRender(bool firstRender)
         {
             _renderCount++;
@@ -34,11 +34,11 @@ namespace BlazorPerformance.Client.Components.Forms
             base.OnAfterRender(firstRender);
         }
 
-        protected override bool TryParseValueFromString(string value, out string result,
+        protected override bool TryParseValueFromString(string? value, out string result,
             out string validationErrorMessage)
         {
-            result = value;
-            validationErrorMessage = null;
+            result = value ?? string.Empty;
+            validationErrorMessage = string.Empty;
             return true;
         }
     }

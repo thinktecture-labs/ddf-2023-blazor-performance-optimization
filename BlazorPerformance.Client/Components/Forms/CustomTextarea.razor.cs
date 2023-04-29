@@ -5,7 +5,7 @@ namespace BlazorPerformance.Client.Components.Forms
 {
     public partial class CustomTextarea
     {
-        [Parameter] public string Label { get; set; }
+        [Parameter] public string Label { get; set; } = string.Empty;
 
         private string? _renderMessage;
         private int _renderCount = 0;
@@ -14,7 +14,6 @@ namespace BlazorPerformance.Client.Components.Forms
         private int _valueHashCode;
         private bool _shouldRender;
 
-        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnParametersSet()
         {
@@ -24,8 +23,9 @@ namespace BlazorPerformance.Client.Components.Forms
             _shouldRender = shouldRender;
             base.OnParametersSet();
         }
-
         #endregion
+
+        protected override bool ShouldRender() => true;
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -34,11 +34,11 @@ namespace BlazorPerformance.Client.Components.Forms
             base.OnAfterRender(firstRender);
         }
 
-        protected override bool TryParseValueFromString(string value, out string result,
+        protected override bool TryParseValueFromString(string? value, out string result,
             out string validationErrorMessage)
         {
-            result = value;
-            validationErrorMessage = null;
+            result = value ?? string.Empty;
+            validationErrorMessage = string.Empty;
             return true;
         }
     }

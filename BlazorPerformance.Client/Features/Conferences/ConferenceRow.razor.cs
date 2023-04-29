@@ -12,8 +12,9 @@ namespace BlazorPerformance.Client.Features.Conferences
         private string _hightlightClass = string.Empty;
         private bool _shouldRender = true;
 
-        protected override bool ShouldRender() => _shouldRender;
+        protected override bool ShouldRender() => true;
 
+        #region Optimierung
         protected override void OnParametersSet()
         {
             if (Conference?.Id == HighlightId)
@@ -29,6 +30,7 @@ namespace BlazorPerformance.Client.Features.Conferences
             }
             base.OnParametersSet();
         }
+        #endregion
 
         protected override void OnAfterRender(bool firstRender)
         {

@@ -27,7 +27,7 @@ namespace BlazorPerformance.Api.BackgroundServices
                     var conf = await conferencesService.GetRandomConference(_lastId, stoppingToken);
                     _lastId = conf?.Id ?? 1;
                     await _hubContext.Clients.All.SendAsync("UpdateCount", conf?.Id ?? 1, random.Next(1, 10));
-                    await Task.Delay(5000);
+                    await Task.Delay(1500);
                 }
             }
         }

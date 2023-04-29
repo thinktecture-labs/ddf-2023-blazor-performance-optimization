@@ -3,7 +3,6 @@
 
 <MudAlert Severity="Severity.Info">
     <div class="d-flex">
-        <span class="mr-4">Rendering count: @_renderingTimes</span>
         @if (!renderingStopwatch.IsRunning && renderingStopwatch.Elapsed.TotalSeconds > 0)
         {
             <span>Rendering time: <b>@Math.Round(renderingStopwatch.Elapsed.TotalSeconds, 2) seconds</b></span>
@@ -26,14 +25,10 @@
         }
         else
         {
-            <Virtualize @ref="_virtualize" ItemsProvider="LoadCollection" Context="conf" SpacerElement="li">
-                <ItemContent>
-                    @RowContent(conf)
-                </ItemContent>
-                <Placeholder>
-                    @RowPlaceholder
-                </Placeholder>
-            </Virtualize>
+            @foreach(var conf in Items)
+            {
+                @RowContent(conf)
+            }
         }
     </ul>
 </div>

@@ -25,11 +25,11 @@
         justify-content: space-between
     }
 
-        .responsive-table ::deep li:first-child,
+        /*.responsive-table ::deep li:first-child,
         .responsive-table ::deep li:last-child {
             padding: 0;
             border: none;
-        }
+        }*/
 
     .responsive-table ::deep li {
         border: 1px solid #000;

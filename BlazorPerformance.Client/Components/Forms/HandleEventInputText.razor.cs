@@ -15,7 +15,6 @@ namespace BlazorPerformance.Client.Components.Forms
         private int _valueHashCode;
         private bool _shouldRender = true;
 
-        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnParametersSet()
         {
@@ -25,8 +24,9 @@ namespace BlazorPerformance.Client.Components.Forms
             _shouldRender = shouldRender;
             base.OnParametersSet();
         }
-
         #endregion
+
+        protected override bool ShouldRender() => true;
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -81,17 +81,17 @@ namespace BlazorPerformance.Client.Components.Forms
             }
         }
 
-        void PreventRender()
+        void SetValueWithoutEventRendering()
         {
             CurrentValue = Value;
-            _preventRender = true;
+            //_preventRender = true;
         }
         #endregion
 
-        protected override bool TryParseValueFromString(string value, out string result,
+        protected override bool TryParseValueFromString(string? value, out string result,
             out string validationErrorMessage)
         {
-            result = value;
+            result = value ?? string.Empty;
             validationErrorMessage = string.Empty;
             return true;
         }

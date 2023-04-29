@@ -28,7 +28,7 @@ else
             <RowContent>
                 <ContributionRow Contribution="@context"
                          SearchTerm="@SearchTerm"
-                         ItemClicked="Utils.EventUtil.AsNonRenderingEventHandler(() => CollectionItemClicked(context.Id))">
+                         ItemClicked="() => CollectionItemClicked(context.Id)">
                 </ContributionRow>
             </RowContent>
             <RowPlaceholder>
@@ -42,14 +42,12 @@ else
             </RowPlaceholder>
         </Collection>
     }
-    else
+    else if(_itemsProvider is not null)
     {
         <div class="grid">
             <QuickGrid 
-                TGridItem=BlazorPerformance.Shared.Models.Contribution 
-                ItemsProvider="_itemsProvider"
-                Theme="thinktecture" 
-                Virtualize="true" 
+                TGridItem=BlazorPerformance.Shared.Models.Contribution
+                Items="Collection.AsQueryable()"
                 ResizableColumns="false">
                 <PropertyColumn Property="@(p => p!.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p!.Type)" Sortable="true" />
