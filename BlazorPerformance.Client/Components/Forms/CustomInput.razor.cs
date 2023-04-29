@@ -25,7 +25,7 @@ namespace BlazorPerformance.Client.Components.Forms
 
         #endregion
 
-        protected override bool ShouldRender() => true;
+        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnAfterRender(bool firstRender)
         {

@@ -19,13 +19,12 @@ namespace BlazorPerformance.Client.Components.Forms
         {
             var lastHashCode = _valueHashCode;
             _valueHashCode = Value?.GetHashCode() ?? 0;
-            var shouldRender = _valueHashCode != lastHashCode;
-            _shouldRender = shouldRender;
+            _shouldRender = _valueHashCode != lastHashCode;
             base.OnParametersSet();
         }
         #endregion
 
-        protected override bool ShouldRender() => true;
+        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnAfterRender(bool firstRender)
         {

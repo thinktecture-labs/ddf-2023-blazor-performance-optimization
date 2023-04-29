@@ -28,7 +28,7 @@ else
             <RowContent>
                 <ContributionRow Contribution="@context"
                          SearchTerm="@SearchTerm"
-                         ItemClicked="() => CollectionItemClicked(context.Id)">
+                         ItemClicked="Utils.EventUtil.AsNonRenderingEventHandler(() => CollectionItemClicked(context.Id))">
                 </ContributionRow>
             </RowContent>
             <RowPlaceholder>
@@ -47,7 +47,9 @@ else
         <div class="grid">
             <QuickGrid 
                 TGridItem=BlazorPerformance.Shared.Models.Contribution
-                Items="Collection.AsQueryable()"
+                ItemsProvider="_itemsProvider"
+                Theme="thinktecture"
+                Pagination="pagination"
                 ResizableColumns="false">
                 <PropertyColumn Property="@(p => p!.Title)" Sortable="true" />
                 <PropertyColumn Property="@(p => p!.Type)" Sortable="true" />
@@ -55,7 +57,7 @@ else
                 <PropertyColumn Property="@(p => p!.Language)" Sortable="true" />
             </QuickGrid>
         </div>
-        @*<div class="page-buttons">
+        <div class="page-buttons">
             Page:
             @if (pagination.TotalItemCount.HasValue)
             {
@@ -70,7 +72,7 @@ else
                     </button>
                 }
             }
-        </div>*@
+        </div>
     }
 }
 

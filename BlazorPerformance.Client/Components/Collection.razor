@@ -25,10 +25,14 @@
         }
         else
         {
-            @foreach(var conf in Items)
-            {
-                @RowContent(conf)
-            }
+            <Virtualize ItemsProvider="LoadCollection" Context="conf">
+                <ItemContent>
+                    @RowContent(conf)
+                </ItemContent>
+                <Placeholder>
+                    @RowPlaceholder
+                </Placeholder>
+            </Virtualize>
         }
     </ul>
 </div>

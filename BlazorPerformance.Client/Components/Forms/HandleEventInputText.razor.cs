@@ -26,7 +26,7 @@ namespace BlazorPerformance.Client.Components.Forms
         }
         #endregion
 
-        protected override bool ShouldRender() => true;
+        protected override bool ShouldRender() => _shouldRender;
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -84,7 +84,7 @@ namespace BlazorPerformance.Client.Components.Forms
         void SetValueWithoutEventRendering()
         {
             CurrentValue = Value;
-            //_preventRender = true;
+            _preventRender = true;
         }
         #endregion
 

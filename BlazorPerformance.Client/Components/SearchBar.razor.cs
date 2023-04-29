@@ -45,7 +45,7 @@ namespace BlazorPerformance.Client.Components
                 {
                     Console.WriteLine("Register debounce JS Event");
                     _selfReference = DotNetObjectReference.Create(this);
-                    var minInterval = 0; // Only notify every 500 ms
+                    var minInterval = 500; // Only notify every 500 ms
                     if (_module == null)
                     {
                         _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/SearchBar.razor.js");

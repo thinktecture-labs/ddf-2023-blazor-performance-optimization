@@ -13,12 +13,13 @@ public class ContributionsService : IContributionsService
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    public Task<List<Contribution>> GetCollectionAsync(CollectionRequest request, CancellationToken cancellationToken)
+    public async Task<List<Contribution>> GetCollectionAsync(CollectionRequest request, CancellationToken cancellationToken)
     {
         var result = String.IsNullOrWhiteSpace(request.SearchTerm)
             ? _context.Contributions
             : _context.Contributions.Where(c => c.Title.Contains(request.SearchTerm));
-        return result.Skip(request.Skip).Take(request.Take).ToListAsync(cancellationToken);
+        await Task.Delay(500);
+        return await result.Skip(request.Skip).Take(request.Take).ToListAsync(cancellationToken);
     }
 
     public Task<Contribution?> GetItemAsync(int id, CancellationToken cancellationToken)

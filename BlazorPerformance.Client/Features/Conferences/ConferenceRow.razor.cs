@@ -12,7 +12,7 @@ namespace BlazorPerformance.Client.Features.Conferences
         private string _hightlightClass = string.Empty;
         private bool _shouldRender = true;
 
-        protected override bool ShouldRender() => true;
+        protected override bool ShouldRender() => _shouldRender;
 
         #region Optimierung
         protected override void OnParametersSet()

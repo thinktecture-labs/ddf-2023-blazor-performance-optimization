@@ -9,6 +9,18 @@ namespace BlazorPerformance.Client.Features.Contribtuions
         [Parameter] public string SearchTerm { get; set; }
         [Parameter] public EventCallback ItemClicked { get; set; }
 
+        private string _currentTitle = string.Empty;
+        private bool _shouldRender = false;
+
+        protected override bool ShouldRender() => true;
+
+        protected override void OnParametersSet()
+        {
+            _shouldRender = _currentTitle != Contribution.Title;
+            _currentTitle = Contribution.Title;
+            base.OnParametersSet();
+        }
+
         private void OnItemClicked()
         {
             ItemClicked.InvokeAsync();
